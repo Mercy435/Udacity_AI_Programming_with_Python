@@ -1,0 +1,2 @@
+barchart is used for distribution of categorical data..... one side is frequency the other is the category,
+depending on the orientation of the chart
