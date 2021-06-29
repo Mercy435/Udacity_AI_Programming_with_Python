@@ -1,0 +1,38 @@
+barchart is used for distribution of categorical data..... one side is frequency the other is the category,
+depending on the orientation of the chart
+
+barchart using seaborn gives the bars in diff colors
+seaborn.countplot(data=data, x="column name")
+where data=pd.read_csv("data.csv")
+we access seaborn colours thus:
+sb.color_palette returns a a tuple of numbers rep colors
+sb.color_palette()[0] gets the first color
+seaborn.countplot(data=data, x="column name", color=base_color)to set bars to one color
+base_color=sb.color_palette()[0]
+
+seaborn.countplot(data=data, x="column name", color=base_color, order=[values in xaxis]) to order by the numbers in column
+or
+column_order=data["column_name"].value_counts().index
+seaborn.countplot(data=data, x="column name", color=base_color, column_order) to order by the sorted numbers in column
+seaborn.countplot(data=data, x="column name", color=base_color, order=[values in xaxis])
+plt.xticks(rotation=90) to set rotation vertically
+seaborn.countplot(data=data, x="column name", color=base_color, order=[values in xaxis]) to order by the numbers in column
+
+sb.countplot(data=pokemon, x='type_1', color=base_color); vertical barchart
+sb.countplot(data=pokemon, y='type_1', color=base_color); horixontal barchart
+
+# Considering the same chart from the Example 1 above, print the text (proportion) on the bars
+base_color = sb.color_palette()[0]
+sb.countplot(data=pkmn_types, y='type', color=base_color, order=type_order);
+
+# Logic to print the proportion text on the bars
+for i in range (type_counts.shape[0]):
+    # Remember, type_counts contains the frequency of unique values in the `type` column in decreasing order.
+    count = type_counts[i]
+    # Convert count into a percentage, and then into string
+    pct_string = '{:0.1f}'.format(100*count/n_pokemon)
+    # Print the string value on the bar.
+    # Read more about the arguments of text() function [here](https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.text.html)
+    plt.text(count+1, i, pct_string, va='center')
+
+

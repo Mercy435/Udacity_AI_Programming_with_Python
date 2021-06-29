@@ -1,2 +1,206 @@
 barchart is used for distribution of categorical data..... one side is frequency the other is the category,
 depending on the orientation of the chart
+
+barchart using seaborn gives the bars in diff colors
+seaborn.countplot(data=data, x="column name")
+where data=pd.read_csv("data.csv")
+we access seaborn colours thus:
+sb.color_palette returns a a tuple of numbers rep colors
+sb.color_palette()[0] gets the first color
+seaborn.countplot(data=data, x="column name", color=base_color)to set bars to one color
+base_color=sb.color_palette()[0]
+
+seaborn.countplot(data=data, x="column name", color=base_color, order=[values in xaxis]) to order by the numbers in column
+or
+column_order=data["column_name"].value_counts().index
+seaborn.countplot(data=data, x="column name", color=base_color, column_order) to order by the sorted numbers in column
+seaborn.countplot(data=data, x="column name", color=base_color, order=[values in xaxis])
+plt.xticks(rotation=90) to set rotation vertically
+seaborn.countplot(data=data, x="column name", color=base_color, order=[values in xaxis]) to order by the numbers in column
+
+sb.countplot(data=pokemon, x='type_1', color=base_color); vertical barchart
+sb.countplot(data=pokemon, y='type_1', color=base_color); horixontal barchart
+
+# Considering the same chart from the Example 1 above, print the text (proportion) on the bars
+base_color = sb.color_palette()[0]
+sb.countplot(data=pkmn_types, y='type', color=base_color, order=type_order);
+
+# Logic to print the proportion text on the bars
+for i in range (type_counts.shape[0]):
+    # Remember, type_counts contains the frequency of unique values in the `type` column in decreasing order.
+    count = type_counts[i]
+    # Convert count into a percentage, and then into string
+    pct_string = '{:0.1f}'.format(100*count/n_pokemon)
+    # Print the string value on the bar.
+    # Read more about the arguments of text() function [here](https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.text.html)
+    plt.text(count+1, i, pct_string, va='center')
+
+
+Data Wrangling Step
+pandas.DataFrame.melt() method to unpivot a DataFrame from wide to long format, optionally leaving identifiers set. The syntax is:
+
+DataFrame.melt(id_vars, value_vars, var_name, value_name, col_level, ignore_index)
+
+id_vars - It is a tuple representing the column(s) to use as identifier variables.
+value_vars - It is tuple representing the column(s) to unpivot (remove, out of place).
+var_name - It is a name of the new column.
+value_name - It is a name to use for the ‘value’ of the columns that are unpivoted.
+
+
+PIECHARTS
+matplotlib.pyplot.pie(x_data, labels, colors, startangle, counterclock, wedgeprops)
+
+HISTOGRAM
+A histogram is used to plot the distribution of a numeric variable. It's the quantitative version of the bar chart
+
+
+A more technical definition would be that a machine learning model is a block of code or framework that can be modified to solve different but related problems based on the data provided.
+
+A model is an extremely generic program, made specific by the data used to train it.
+
+Model training algorithms work through an interactive process where the current model iteration is analyzed to determine what changes can be made to get closer to the goal. Those changes are made and the iteration continues until the model is evaluated to meet the goals.
+
+Model inference is when the trained model is used to generate predictions
+
+Impute is a common term referring to different statistical tools which can be used to calculate missing values from your dataset.
+Outliers are data points that are significantly different from others in the same sample.
+
+Model Training Terminology
+The model training algorithm iteratively updates a model's parameters to minimize some loss function.
+
+Let's define those two terms:
+
+Model parameters: Model parameters are settings or configurations the training algorithm can update to change how the model behaves. Depending on the context, you’ll also hear other more specific terms used to describe model parameters such as weights and biases. Weights, which are values that change as the model learns, are more specific to neural networks.
+Loss function: A loss function is used to codify the model’s distance from this goal. For example, if you were trying to predict a number of snow cone sales based on the day’s weather, you would care about making predictions that are as accurate as possible. So you might define a loss function to be “the average distance between your model’s predicted number of snow cone sales and the correct number.” You can see in the snow cone example this is the difference between the two purple dots.
+Linear models are fast to train and give you a great baseline against which to compare more complex models.
+
+Deep learning models
+Extremely popular and powerful, deep learning is a modern approach based around a conceptual model of how the human brain functions. The model (also called a neural network) is composed of collections of neurons (very simple computational units) connected together by weights (mathematical representations of how much information to allow to flow from one neuron to the next)
+
+FFNN: The most straightforward way of structuring a neural network, the Feed Forward Neural Network (FFNN) structures neurons in a series of layers, with each neuron in a layer containing weights to all neurons in the previous layer.
+CNN: Convolutional Neural Networks (CNN) represent nested filters over grid-organized data. They are by far the most commonly used type of model when processing images.
+RNN/LSTM: Recurrent Neural Networks (RNN) and the related Long Short-Term Memory (LSTM) model types are structured to effectively represent for loops in traditional computing, collecting state while iterating over some object. They can be used for processing sequences of data.
+Transformer: A more modern replacement for RNN/LSTMs, the transformer architecture enables training over larger datasets involving sequences of data.
+
+
+
+Hyperparameters are settings on the model which are not changed during training but can affect how quickly or how reliably the model trains, such as the number of clusters the model should identify. WHILE
+Model parameters: Model parameters are settings or configurations the training algorithm can update to change how the model behaves. 
+
+Log loss seeks to calculate how uncertain your model is about the predictions it is generating. In this context, uncertainty refers to how likely a model thinks the predictions being generated are to be correct.
+Model Accuracy is the fraction of predictions a model gets right.
+
+METRICS FOR REGRESSION
+Mean absolute error (MAE): This is measured by taking the average of the absolute difference between the actual values and the predictions. Ideally, this difference is minimal.
+
+Root mean square error (RMSE): This is similar MAE, but takes a slightly modified approach so values with large error receive a higher penalty. RMSE takes the square root of the average squared difference between the prediction and the actual value. AVERAGE ERROR(its should be low)
+
+Coefficient of determination or R-squared (R^2): This measures how well-observed outcomes are actually predicted by the model, based on the proportion of total variation of outcomes.
+
+Once you have trained your model, have evaluated its effectiveness, and are satisfied with the results, you're ready to generate predictions on real-world problems using unseen data in the field. In machine learning, this process is often called inference
+
+Model inference involves...
+
+Generating predictions.
+
+Finding patterns in your data.
+
+Using a trained model.
+
+Testing your model on data it has not seen before.
+
+
+
+predicting the height (label) of a thrown projectile over time (input variable). You know the trajectory is not linear; it's curved. Any straight line you try to use to describe this phenomenon would be invalid for a large range of the projectile's trajectory.
+
+Techniques do exist to modify your data so you can still use linear models in these situations. Such methods are out of scope for this course but are called kernel method
+
+"a' "the' are referred to as STOP WORDS in ML
+
+the silhouette coefficient is a good metric for measuring unsupervised learnig(clustering) and k-means is a good baseline model to start with... k is the no of clusters we want to find
+
+
+Bag of words: A technique used to extract features from the text. It counts how many times a word appears in a document (corpus), and then transforms that information into a dataset.
+Data vectorization: A process that converts non-numeric data into a numerical format so that it can be used by a machine learning model.
+Silhouette coefficient: A score from -1 to 1 describing the clusters found during modeling. A score near zero indicates overlapping clusters, and scores less than zero indicate data points assigned to incorrect clusters. A score approaching 1 indicates successful identification of discrete non-overlapping clusters.
+Stop words: A list of words removed by natural language processing tools when building your dataset. There is no single universal list of stop words used by all-natural language processing tools.
+
+
+CNN (convolutional neural network)
+Neural networks are beyond the scope of this lesson, but you can think of them as a collection of very simple models connected together. These simple models are called neurons, and the connections between these models are trainable model parameters called weights.
+
+Convolutional neural networks are a special type of neural network particularly good at processing images
+
+ Precision and Recall will be effective for image detection, spill or no spill( supervised learning). You can think of precision as answering the question, "Of all predictions of a spill, how many were right?" and recall as answering the question, "Of all actual spills, how many did we detect?"
+ 
+ 
+ 
+ GLOSSARY
+ Bag of words: A technique used to extract features from the text. It counts how many times a word appears in a document (corpus), and then transforms that information into a dataset.
+
+A categorical label has a discrete set of possible values, such as "is a cat" and "is not a cat."
+
+Clustering. Unsupervised learning task that helps to determine if there are any naturally occurring groupings in the data.
+
+CNN: Convolutional Neural Networks (CNN) represent nested filters over grid-organized data. They are by far the most commonly used type of model when processing images.
+
+A continuous (regression) label does not have a discrete set of possible values, which means possibly an unlimited number of possibilities.
+
+Data vectorization: A process that converts non-numeric data into a numerical format so that it can be used by a machine learning model.
+
+Discrete: A term taken from statistics referring to an outcome taking on only a finite number of values (such as days of the week).
+
+FFNN: The most straightforward way of structuring a neural network, the Feed Forward Neural Network (FFNN) structures neurons in a series of layers, with each neuron in a layer containing weights to all neurons in the previous layer.
+
+Hyperparameters are settings on the model which are not changed during training but can affect how quickly or how reliably the model trains, such as the number of clusters the model should identify.
+
+Log loss is used to calculate how uncertain your model is about the predictions it is generating.
+
+Hyperplane: A mathematical term for a surface that contains more than two planes.
+
+Impute is a common term referring to different statistical tools which can be used to calculate missing values from your dataset.
+
+label refers to data that already contains the solution.
+
+loss function is used to codify the model’s distance from this goal
+
+Machine learning, or ML, is a modern software development technique that enables computers to solve problems by using examples of real-world data.
+
+Model accuracy is the fraction of predictions a model gets right. Discrete: A term taken from statistics referring to an outcome taking on only a finite number of values (such as days of the week). Continuous: Floating-point values with an infinite range of possible values. The opposite of categorical or discrete values, which take on a limited number of possible values.
+
+Model inference is when the trained model is used to generate predictions.
+
+model is an extremely generic program, made specific by the data used to train it.
+
+Model parameters are settings or configurations the training algorithm can update to change how the model behaves.
+
+Model training algorithms work through an interactive process where the current model iteration is analyzed to determine what changes can be made to get closer to the goal. Those changes are made and the iteration continues until the model is evaluated to meet the goals.
+
+Neural networks: a collection of very simple models connected together. These simple models are called neurons. The connections between these models are trainable model parameters called weights.
+
+Outliers are data points that are significantly different from others in the same sample.
+
+Plane: A mathematical term for a flat surface (like a piece of paper) on which two points can be joined by a straight line.
+
+Regression: A common task in supervised machine learning.
+
+In reinforcement learning, the algorithm figures out which actions to take in a situation to maximize a reward (in the form of a number) on the way to reaching a specific goal.
+
+RNN/LSTM: Recurrent Neural Networks (RNN) and the related Long Short-Term Memory (LSTM) model types are structured to effectively represent for loops in traditional computing, collecting state while iterating over some object. They can be used for processing sequences of data.
+
+Silhouette coefficient: A score from -1 to 1 describing the clusters found during modeling. A score near zero indicates overlapping clusters, and scores less than zero indicate data points assigned to incorrect clusters. A
+
+Stop words: A list of words removed by natural language processing tools when building your dataset. There is no single universal list of stop words used by all-natural language processing tools.
+
+In supervised learning, every training sample from the dataset has a corresponding label or output value associated with it. As a result, the algorithm learns to predict labels or output values.
+
+Test dataset: The data withheld from the model during training, which is used to test how well your model will generalize to new data.
+
+Training dataset: The data on which the model will be trained. Most of your data will be here.
+
+Transformer: A more modern replacement for RNN/LSTMs, the transformer architecture enables training over larger datasets involving sequences of data.
+
+In unlabeled data, you don't need to provide the model with any kind of label or solution while the model is being trained.
+
+In unsupervised learning, there are no labels for the training data. A machine learning algorithm tries to learn the underlying patterns or distributions that govern the data.
+
