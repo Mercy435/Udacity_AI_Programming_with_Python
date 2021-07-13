@@ -1,0 +1,9 @@
+Scaling is the act of stretching or skwetching or reversing the direction of a vector
+
+numbers are used to scale vectors--they are called scalars
+
+ vector is an ordered list of numbers
+
+ Each element in the vector, also called component or coordinate, is a numbers
+
+ Transpose of a vector is the 90degree version of a vector.. turning a column vector to a  row
